@@ -3,8 +3,27 @@ from regexp import RegularExpression, Expression, Matchable
 from cursor import Cursor
 
 # @TODO: Переделать архитектуру (Matchable)
+# Matchable.match(Cursor, Groups) -> Matchable.match(RegexpDriver)
+# Использовать для RegexpDriver шаблон Command (передача все команд ему - это нужно для инверсии зависимости)
+# Плюсы такого решения:
+# 1) Избавление от большого множества зависимостей
+# 2) Нам неважно внутреннее строение наших зависимостей и их состояние, поскольку это контролирует сам driver
+
+# Для создания команд (Command) использовать шаблон Static Fabric (статическая фабрика)
+# В той фабрике объекты будут создаваться
+# Переименовать: Groups -> Memory
+# Разложить: Memory -> (в) Memory, MemoryFrame (Frame)
+
+# Сделать @dataclass Token
 
 def matches(cursor: Cursor, character: str) -> bool:
+  """
+  Moves cursor if character matches the current
+
+  :param cursor: Cursor to string
+  :param character: Character you need to match
+  :returns: Character matches the current or not
+  """
   if cursor.current == character:
     cursor.next()
     return True
