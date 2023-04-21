@@ -1,8 +1,5 @@
-from dataclasses import dataclass, field
-
-@dataclass()
 class Groups:
-  frames: list[tuple[list[str], dict[str, str]]] = field(default_factory=list)
+  frames: list[tuple[list[str], dict[str, str]]] = []
 
   def create_frame(self): self.frames.append(([], {}))
 
