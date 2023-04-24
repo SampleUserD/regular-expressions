@@ -5,5 +5,5 @@ class NonSequenceMatcher(CharacterMatcher):
   def __init__(self, characters: list[str]):
     self._characters = characters
 
-  def condition(self, cursor: Cursor) -> bool:
-    return cursor.current not in self._characters
+  def meets_condition(self, character: str) -> bool:
+    return character not in self._characters
