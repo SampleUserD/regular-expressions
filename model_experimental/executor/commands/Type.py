@@ -1,0 +1,7 @@
+from enum import Enum
+
+class Type(Enum):
+  MOVE_CURSOR = 0
+  SCREENSHOT_CURSOR_CHANGE = 1
+  CHECK_IF_CURSOR_DONE = 2
+  GET_CURSOR_CURRENT_CHARACTER = 3
