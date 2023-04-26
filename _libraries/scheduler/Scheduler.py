@@ -32,19 +32,19 @@ class Scheduler(Generic[EventType]):
     self._manager = Manager()
     self._bus: list[Event[EventType, PackageType]] = []
 
-  def _reuse_reserved_events(self, event_type: EventType):
+  def __reuse_reserved_events(self, event_type: EventType):
     for event in self._bus:
       if (event.type.value == event_type.value) and (not event.used):
         self._manager.fire(event.type, event.package)
         event.mark_used()
 
-  def _clean_garbage(self):
+  def __clean_garbage(self):
     delete_all_by(lambda x: x.used, self._bus)
 
   def on(self, event_type: EventType, callback: Callable[[PackageType], None]):
     self._manager.on(event_type, callback)
-    self._clean_garbage()
-    self._reuse_reserved_events(event_type)
+    self.__clean_garbage()
+    self.__reuse_reserved_events(event_type)
 
   def fire(self, event_type: EventType, package: PackageType) -> None:
     self._bus.append(Event(event_type, package))

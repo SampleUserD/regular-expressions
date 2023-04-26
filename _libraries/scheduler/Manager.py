@@ -30,12 +30,12 @@ class Manager(Generic[EventType]):
   def __init__(self):
     self._handlers: list[EventHandler[EventType, PackageType]] = []
 
-  def _clean_garbage(self):
+  def __clean_garbage(self):
     delete_all_by(lambda x: x.used, self._handlers)
 
   def on(self, event_type: EventType, callback: Callable[[PackageType], None]):
     self._handlers.append(EventHandler(event_type, callback))
-    self._clean_garbage()
+    self.__clean_garbage()
 
   def fire(self, event_type: EventType, package: PackageType):
     to_delete: list[int] = []
