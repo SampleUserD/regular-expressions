@@ -1,4 +1,4 @@
-from _libraries import cursor, memory, event, executor
+from _libraries import cursor, memory, scheduler, executor
 from _libraries.executor import ImmediateExecutor as Executor
 
 from .executor import commands

@@ -1,1 +1,1 @@
-from _libraries import cursor, memory, executor, event
+from _libraries import cursor, memory, executor, scheduler

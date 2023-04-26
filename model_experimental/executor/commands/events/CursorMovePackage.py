@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from .__packages__ import event
+from .__packages__ import scheduler
 
 @dataclass(init=True)
-class CursorMovePackage(event.Package):
+class CursorMovePackage(scheduler.Package):
   character: str
   index: int
